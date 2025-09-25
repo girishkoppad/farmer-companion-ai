@@ -348,7 +348,7 @@ const GPSLogistics = () => {
           <p className="text-sm text-muted-foreground">
             <strong>GPS Tracking:</strong> Real-time location tracking powered by Google Maps API. 
             Location data is updated every 5 minutes for active shipments. 
-            {!process.env.GOOGLE_MAPS_API_KEY && ' Maps API integration pending - showing sample tracking data.'}
+            Maps API integration pending - showing sample tracking data.
           </p>
         </div>
       </CardContent>

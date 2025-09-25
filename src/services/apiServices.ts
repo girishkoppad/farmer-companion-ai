@@ -12,7 +12,7 @@ class APIService {
         `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070`,
         {
           params: {
-            'api-key': process.env.AGMARKNET_API_KEY || 'demo-key',
+            'api-key': 'demo-key',
             format: 'json',
             limit: 100,
             filters: {
@@ -39,7 +39,7 @@ class APIService {
         `https://soilhealth.dac.gov.in/api/soil/${district}`,
         {
           headers: {
-            'Authorization': `Bearer ${process.env.SOIL_HEALTH_API_KEY || 'demo-key'}`
+            'Authorization': `Bearer demo-key`
           }
         }
       );
@@ -59,7 +59,7 @@ class APIService {
           params: {
             crop: crop,
             range: timeRange,
-            'api-key': process.env.UPAG_API_KEY || 'demo-key'
+            'api-key': 'demo-key'
           }
         }
       );
@@ -79,7 +79,7 @@ class APIService {
           params: {
             lat: latitude,
             lon: longitude,
-            appid: process.env.OPENWEATHER_API_KEY || 'demo-key',
+            appid: 'demo-key',
             units: 'metric'
           }
         }

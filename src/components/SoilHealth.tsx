@@ -223,7 +223,7 @@ const SoilHealth = () => {
               <p className="text-sm text-muted-foreground">
                 <strong>Data Source:</strong> Soil Health Dashboard API provides comprehensive soil analysis 
                 based on latest laboratory tests and field surveys. 
-                {!process.env.SOIL_HEALTH_API_KEY && ' API integration pending - showing sample data.'}
+                API integration pending - showing sample data.
               </p>
             </div>
           </TabsContent>

@@ -219,7 +219,7 @@ const MarketTrends = () => {
           <p className="text-sm text-muted-foreground">
             <strong>Data Source:</strong> Market trends are analyzed from UPAg Portal and various commodity exchanges. 
             Forecasts are based on historical data, weather patterns, and demand analysis. 
-            {!process.env.UPAG_API_KEY && ' API integration pending - showing sample data.'}
+            API integration pending - showing sample data.
           </p>
         </div>
       </CardContent>

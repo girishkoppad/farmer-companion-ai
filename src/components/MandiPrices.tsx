@@ -206,7 +206,7 @@ const MandiPrices = () => {
           <p className="text-sm text-muted-foreground">
             <strong>Note:</strong> Prices are fetched from Agmarknet API and updated every hour. 
             Actual prices may vary by market location and quality grade. 
-            {!process.env.AGMARKNET_API_KEY && ' API integration pending - showing sample data.'}
+            API integration pending - showing sample data.
           </p>
         </div>
       </CardContent>

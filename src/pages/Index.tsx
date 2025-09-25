@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   Sprout, 
@@ -9,7 +8,6 @@ import {
   Users, 
   Truck, 
   MessageCircle, 
-  Leaf,
   Sun,
   Droplets,
   Thermometer,
@@ -18,11 +16,9 @@ import {
 } from 'lucide-react';
 import AIChat from '@/components/AIChat';
 import MandiPrices from '@/components/MandiPrices';
-import SoilHealth from '@/components/SoilHealth';
-import MarketTrends from '@/components/MarketTrends';
 import CommunityHub from '@/components/CommunityHub';
 import GPSLogistics from '@/components/GPSLogistics';
-import heroImage from '@/assets/hero-farming.jpg';
+import farmerAiLogo from '@/assets/farmer-ai-logo.png';
 import { toast } from '@/hooks/use-toast';
 
 const Index = () => {
@@ -47,13 +43,6 @@ const Index = () => {
       color: 'bg-gradient-harvest'
     },
     {
-      title: 'Soil Health Score',
-      value: '72/100',
-      subtext: 'Good Condition',
-      icon: <Leaf className="h-5 w-5" />,
-      color: 'bg-gradient-earth'
-    },
-    {
       title: 'Active Shipments',
       value: '3',
       subtext: '2 In Transit',
@@ -61,9 +50,9 @@ const Index = () => {
       color: 'bg-gradient-primary'
     },
     {
-      title: 'Market Trend',
-      value: '+5.2%',
-      subtext: 'Wheat Prices Up',
+      title: 'Mandi Prices',
+      value: '₹2,450',
+      subtext: 'Wheat Per Quintal',
       icon: <TrendingUp className="h-5 w-5" />,
       color: 'bg-gradient-primary'
     }
@@ -83,16 +72,10 @@ const Index = () => {
       action: () => setActiveTab('chat')
     },
     {
-      title: 'Soil Analysis',
-      description: 'Check soil health',
-      icon: <Leaf className="h-4 w-4" />,
-      action: () => setActiveTab('soil')
-    },
-    {
-      title: 'Track Delivery',
-      description: 'GPS logistics tracking',
-      icon: <Truck className="h-4 w-4" />,
-      action: () => setActiveTab('logistics')
+      title: 'Community Hub',
+      description: 'Connect with farmers',
+      icon: <Users className="h-4 w-4" />,
+      action: () => setActiveTab('community')
     }
   ];
 
@@ -106,29 +89,21 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <div 
-        className="relative h-64 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroImage})` }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative z-10 flex items-center justify-center h-full text-center text-white">
-          <div className="space-y-4">
-            <h1 className="text-4xl md:text-6xl font-bold">Smart Crop Advisory</h1>
-            <p className="text-lg md:text-xl max-w-2xl mx-auto px-4">
-              Your AI-powered farming companion for real-time insights, market data, and agricultural guidance
-            </p>
-            <Badge className="bg-white/20 text-white border-white/30 text-lg px-4 py-2">
-              Powered by Government APIs & AI
-            </Badge>
-          </div>
+      {/* Logo Section */}
+      <div className="py-8 border-b">
+        <div className="container mx-auto px-4 text-center">
+          <img 
+            src={farmerAiLogo} 
+            alt="Smart Crop Advisory - Farmer & AI Partnership" 
+            className="h-16 mx-auto"
+          />
         </div>
       </div>
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-6 mb-8 h-12">
+          <TabsList className="grid w-full grid-cols-4 mb-8 h-12">
             <TabsTrigger value="dashboard" className="flex items-center gap-2">
               <Sprout className="h-4 w-4" />
               Dashboard
@@ -141,14 +116,6 @@ const Index = () => {
               <TrendingUp className="h-4 w-4" />
               Prices
             </TabsTrigger>
-            <TabsTrigger value="soil" className="flex items-center gap-2">
-              <Leaf className="h-4 w-4" />
-              Soil Health
-            </TabsTrigger>
-            <TabsTrigger value="trends" className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4" />
-              Trends
-            </TabsTrigger>
             <TabsTrigger value="community" className="flex items-center gap-2">
               <Users className="h-4 w-4" />
               Community
@@ -157,7 +124,7 @@ const Index = () => {
 
           <TabsContent value="dashboard" className="space-y-8">
             {/* Dashboard Metrics */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-6 md:grid-cols-3">
               {dashboardMetrics.map((metric, index) => (
                 <Card key={index} className="shadow-soft hover:shadow-medium transition-shadow">
                   <CardContent className="p-6">
@@ -222,7 +189,7 @@ const Index = () => {
                 <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
               <CardContent className="p-6">
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <div className="grid gap-4 md:grid-cols-3">
                   {quickActions.map((action, index) => (
                     <Button
                       key={index}
@@ -272,14 +239,6 @@ const Index = () => {
             <MandiPrices />
           </TabsContent>
 
-          <TabsContent value="soil">
-            <SoilHealth />
-          </TabsContent>
-
-          <TabsContent value="trends">
-            <MarketTrends />
-          </TabsContent>
-
           <TabsContent value="community">
             <CommunityHub />
           </TabsContent>
@@ -304,9 +263,8 @@ const Index = () => {
               <h4 className="font-semibold mb-4">Data Sources</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Agmarknet API - Mandi Prices</li>
-                <li>• Soil Health Dashboard - Soil Data</li>
-                <li>• UPAg Portal - Market Trends</li>
                 <li>• Google Gemini AI - Smart Advisor</li>
+                <li>• Google Maps - GPS Tracking</li>
               </ul>
             </div>
             <div>
@@ -314,7 +272,6 @@ const Index = () => {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>• Real-time Mandi Prices</li>
                 <li>• AI-powered Crop Advice</li>
-                <li>• Soil Health Analysis</li>
                 <li>• GPS Logistics Tracking</li>
                 <li>• Community Connections</li>
               </ul>
